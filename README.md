@@ -21,3 +21,6 @@ __Start server and watch files__
 `yarn start`
 
 Visit in browser http://localhost:7777. The default port is 7777 but you can change this in your environment variables file (_variables.env_)
+
+## Blog Post
+[How to get linked records with the Airtable API](https://chinarajames.com/airtable-api-linked-records)
