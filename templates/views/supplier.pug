@@ -1,0 +1,10 @@
+extends ../layouts/base
+include ../mixins/_pagination
+
+block content
+  h1.title= supplier.name
+
+  p= supplier.location
+  p= supplier.phone_number
+  p= supplier.notes
+

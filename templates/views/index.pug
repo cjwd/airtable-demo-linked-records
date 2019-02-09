@@ -1,0 +1,39 @@
+extends ../layouts/base
+include ../mixins/_pagination
+
+block content
+  h1.title= title
+  .flex.box
+    form.form.form--filter(action=`/` method="POST")
+      .field.has-addons
+        .control.has-icons-left
+          span.select
+            select#supplier(name="supplier")
+              option(value="") Filter by supplier
+                each supplier in suppliers
+                  option(value=`${supplier.id}`) #{supplier.name}
+          span.icon.is-small.is-left
+            i.fas.fa-filter
+        .control
+          input.input.button.is-primary(type="submit" value="Filter")
+
+    a.button.is-link.ml-24(href="/") Show All
+
+  .products.grid.grid--12
+    each product in products
+      .product.card
+        .card-image
+          figure.image.is-4by3
+            img(src="https://bulma.io/images/placeholders/1280x960.png")
+        .card-content
+          .content
+            p!= `<b>Product ID:</b> ${product.id}`
+            p!= `<b>Name:</b> ${product.name}`
+            p!= `<b>Quantity in Stock:</b> ${product.qty}`
+            p
+              strong Suppliers
+              each supplier in product.suppliers
+                p
+                  a(href=`/supplier/${supplier.id}`) #{supplier.name}
+
+  +pagination(page, products[0].pages, count)

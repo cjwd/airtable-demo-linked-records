@@ -1,0 +1,101 @@
+
+@charset "utf-8";
+@import "~bulma/bulma";
+
+
+/*=============================================
+=            #GRID            =
+=============================================*/
+
+.grid {
+  display: grid;
+}
+
+.grid--12 {
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 24px;
+}
+
+/*=====  End of #GRID  ======*/
+
+
+
+/*=============================================
+=            #FLEX GRID            =
+=============================================*/
+
+.flex {
+  display: flex;
+}
+
+/*=====  End of #FLEX GRID  ======*/
+
+
+
+
+
+
+/*=============================================
+=            #PRODUCT            =
+=============================================*/
+
+.product {
+  grid-column: span 4;
+}
+
+/*=====  End of #PRODUCT  ======*/
+
+
+
+
+
+
+/*=============================================
+=            #PAGINATIONS            =
+=============================================*/
+
+.pages {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: $size-4;
+  margin-bottom: $size-4;
+}
+
+.paginate-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.paging-input {
+  display: flex;
+  align-items: center;
+
+  input {
+    width: $size-1;
+    margin-left: $size-6;
+    margin-right: $size-6;
+  }
+}
+
+/*=====  End of #PAGINATIONS  ======*/
+
+
+
+/*=============================================
+=            #MODIFIERS            =
+=============================================*/
+
+.mr-24 {
+  margin-right: 24px;
+}
+
+.ml-24 {
+  margin-left: 24px;
+}
+
+/*=====  End of #MODIFIERS  ======*/
+
+
+
