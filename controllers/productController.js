@@ -5,19 +5,19 @@ const base = new Airtable({
   apiKey: process.env.AIRTABLE_API_KEY,
 }).base(process.env.AIRTABLE_BASE_ID);
 const TABLE = base('inventory');
-const VIEW = 'Main View';
-const LIMIT = 10;
-
-let records = [];
+const OPTIONS = {
+  view: 'Main View',
+  pageSize: 9
+}
 
 
 const getProducts = async (page) => {
   records = [];
-  const products = await data.getAirtableRecords(TABLE, VIEW, LIMIT);
+  const products = await data.getAirtableRecords(TABLE, OPTIONS);
 
   const count = products.length,
-        pages = Math.ceil(count / LIMIT),
-        offset = (page * LIMIT) - LIMIT;
+        pages = Math.ceil(count / OPTIONS.pageSize),
+        offset = (page * OPTIONS.pageSize) - OPTIONS.pageSize;
 
   return products.map( product => {
     return {
@@ -26,18 +26,18 @@ const getProducts = async (page) => {
       qty: product.get('qty_in_stock'),
       pages
     }
-  }).slice(offset, LIMIT*page);
+  }).slice(offset, OPTIONS.pageSize*page);
 }
 
 /**
  * Get products with their suppliers
  */
 const getProductsAndSuppliers = async (page) => {
-  const products = await data.getAirtableRecords(TABLE, VIEW, LIMIT);
+  const products = await data.getAirtableRecords(TABLE, OPTIONS);
 
   const count = products.length,
-        pages = Math.ceil(count / LIMIT),
-        offset = (page * LIMIT) - LIMIT;
+        pages = Math.ceil(count / OPTIONS.pageSize),
+        offset = (page * OPTIONS.pageSize) - OPTIONS.pageSize;
 
   return products.map( product => {
     return {
@@ -47,7 +47,7 @@ const getProductsAndSuppliers = async (page) => {
       pages,
       suppliers: product.get('suppliers'),
     }
-  }).slice(offset, LIMIT*page);
+  }).slice(offset, OPTIONS.pageSize*page);
 }
 
 const getSupplierById = (id) => {
